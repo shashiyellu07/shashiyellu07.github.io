@@ -3,35 +3,31 @@
 // =========================
 
 const texts = [
-    "Junior Software Engineer",
+    "Junior Software Engineer"
 ];
 
 let count = 0;
 let index = 0;
-let currentText = "";
-let letter = "";
 
 (function type(){
-    if(count === texts.length){
-        count = 0;
-    }
-
-    currentText = texts[count];
-    letter = currentText.slice(0, ++index);
 
     const typingElement = document.querySelector(".typing");
 
-    if(typingElement){
-        typingElement.textContent = letter;
-    }
+    if(!typingElement) return;
+
+    let currentText = texts[count];
+    let letter = currentText.slice(0, ++index);
+
+    typingElement.textContent = letter;
 
     if(letter.length === currentText.length){
-        count++;
+        count = (count + 1) % texts.length;
         index = 0;
-        setTimeout(type,1000);
+        setTimeout(type, 1000);
     } else {
-        setTimeout(type,80);
+        setTimeout(type, 80);
     }
+
 })();
 
 
@@ -48,6 +44,24 @@ const navMenu = document.querySelector(".nav-links");
 
 
 // =========================
+// ACTIVE LINK CONTROL
+// =========================
+
+function setActiveLink(link){
+
+    navLinks.forEach(l=>{
+        l.classList.remove("active");
+    });
+
+    link.classList.add("active");
+
+    if(window.innerWidth > 768){
+        movePill(link);
+    }
+}
+
+
+// =========================
 // MOVE SLIDING PILL (DESKTOP ONLY)
 // =========================
 
@@ -56,7 +70,7 @@ function movePill(element){
     if(!element || !navPill || window.innerWidth <= 768) return;
 
     const rect = element.getBoundingClientRect();
-    const parentRect = element.parentElement.parentElement.getBoundingClientRect();
+    const parentRect = element.closest(".nav-links").getBoundingClientRect();
 
     navPill.style.width = rect.width + "px";
     navPill.style.left = (rect.left - parentRect.left) + "px";
@@ -74,26 +88,22 @@ if(hamburger){
 }
 
 
-// Close mobile menu when clicking nav link
+// Close menu + activate link on click
 navLinks.forEach(link=>{
-    link.addEventListener("click",()=>{
 
-        navLinks.forEach(l=>l.classList.remove("active"));
+    link.addEventListener("click", e=>{
+        setActiveLink(link);
 
-        link.classList.add("active");
-
-        movePill(link);
-
-        // Close mobile menu after selection
         if(window.innerWidth <= 768){
             navMenu.classList.remove("active");
         }
     });
+
 });
 
 
 // =========================
-// SCROLL DETECTION
+// SCROLL SPY NAVBAR
 // =========================
 
 let lastScroll = 0;
@@ -103,22 +113,22 @@ window.addEventListener("scroll", () => {
     let currentSection = "";
 
     sections.forEach(section=>{
-        const sectionTop = section.offsetTop - 150;
+        const sectionTop = section.offsetTop - 160;
 
         if(window.scrollY >= sectionTop){
-            currentSection = section.getAttribute("id");
+            currentSection = section.id;
         }
     });
 
     navLinks.forEach(link=>{
-        link.classList.remove("active");
 
         if(link.getAttribute("href") === "#" + currentSection){
-            link.classList.add("active");
-            movePill(link);
+            setActiveLink(link);
         }
+
     });
 
+    // Navbar hide on scroll down
     const currentScroll = window.pageYOffset;
 
     if(currentScroll > lastScroll){
@@ -128,4 +138,5 @@ window.addEventListener("scroll", () => {
     }
 
     lastScroll = currentScroll;
+
 });
