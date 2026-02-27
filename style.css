@@ -21,7 +21,6 @@ left:50%;
 transform:translateX(-50%);
 width:min(92%,1100px);
 
-
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -36,7 +35,6 @@ box-shadow:0 10px 40px rgba(0,0,0,0.08);
 
 z-index:9999;
 transition:0.4s ease;
-
 }
 
 .logo{
@@ -50,18 +48,15 @@ font-weight:600;
 position:relative;
 list-style:none;
 
-
 display:flex;
 align-items:center;
 gap:8px;
-
-
+transition:0.35s ease;
 }
 
 .nav-links a{
 display:inline-block;
 padding:8px 18px;
-
 
 text-decoration:none;
 color:#111;
@@ -73,8 +68,13 @@ border-radius:20px;
 
 position:relative;
 z-index:2;
+}
 
+/* Active Link Desktop + Mobile */
 
+.nav-links a.active{
+background:#007aff;
+color:white;
 }
 
 /* Sliding Pill */
@@ -84,19 +84,12 @@ position:absolute;
 top:50%;
 transform:translateY(-50%);
 
-
 height:36px;
 background:#007aff;
 border-radius:25px;
 
 transition:0.35s ease;
 z-index:1;
-
-
-}
-
-.nav-link.active{
-color:white;
 }
 
 /* ================= HAMBURGER ================= */
@@ -112,7 +105,6 @@ cursor:pointer;
 .hero{
 min-height:100vh;
 
-
 display:flex;
 justify-content:center;
 align-items:center;
@@ -120,8 +112,6 @@ align-items:center;
 text-align:center;
 
 padding:160px 20px 60px;
-
-
 }
 
 .hero h3{
@@ -148,16 +138,12 @@ margin:30px 0;
 .profile-image img{
 width:200px;
 height:200px;
-
-
 object-fit:cover;
 
 border-radius:50%;
 border:6px solid rgba(255,255,255,0.7);
 
 box-shadow:0 10px 30px rgba(0,0,0,0.1);
-
-
 }
 
 .hero p{
@@ -181,17 +167,16 @@ padding:12px 28px;
 background:#007aff;
 color:white;
 
-
 border-radius:25px;
 text-decoration:none;
 
 font-size:14px;
 transition:0.3s;
-
-
 }
 
-.btn-primary:hover
+.btn-primary:hover{
+background:#005fd1;
+}
 
 .btn-secondary{
 padding:12px 28px;
@@ -204,8 +189,6 @@ color:#111;
 
 font-size:14px;
 transition:0.3s;
-
-
 }
 
 .btn-secondary:hover{
@@ -236,7 +219,6 @@ gap:15px;
 .skill-box{
 padding:10px 22px;
 
-
 border-radius:20px;
 
 background:rgba(255,255,255,0.6);
@@ -244,8 +226,6 @@ box-shadow:0 5px 20px rgba(0,0,0,0.05);
 
 font-size:14px;
 transition:0.3s;
-
-
 }
 
 .skill-box:hover{
@@ -258,19 +238,15 @@ transform:translateY(-4px);
 max-width:900px;
 margin:auto;
 
-
 display:flex;
 flex-direction:column;
 gap:40px;
 
 padding:20px;
-
-
 }
 
 .elite-card{
 position:relative;
-
 
 padding:35px;
 border-radius:28px;
@@ -284,8 +260,6 @@ transition:0.4s ease;
 
 text-align:left;
 overflow:hidden;
-
-
 }
 
 .elite-card:hover{
@@ -300,7 +274,6 @@ border:2px solid #007aff;
 .current-role::after{
 content:"";
 
-
 position:absolute;
 top:20px;
 right:20px;
@@ -312,8 +285,6 @@ background:#007aff;
 border-radius:50%;
 
 animation:pulse 1.8s infinite;
-
-
 }
 
 @keyframes pulse{
@@ -328,11 +299,8 @@ display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
 
-
 gap:10px;
 margin-bottom:10px;
-
-
 }
 
 .elite-card h3{
@@ -342,23 +310,17 @@ font-size:22px;
 .elite-company{
 display:block;
 
-
 font-size:15px;
 color:#007aff;
 font-weight:600;
-
-
 }
 
 .elite-date{
 display:block;
 
-
 font-size:13px;
 color:#666;
 margin-bottom:18px;
-
-
 }
 
 .elite-card p{
@@ -373,13 +335,10 @@ line-height:1.7;
 background:#007aff;
 color:white;
 
-
 padding:6px 14px;
 border-radius:18px;
 
 font-size:12px;
-
-
 }
 
 /* ================= PROJECTS ================= */
@@ -390,16 +349,13 @@ flex-wrap:wrap;
 justify-content:center;
 gap:35px;
 
-
 max-width:1100px;
 margin:auto;
-
 }
 
 .premium-card{
 width:330px;
 padding:30px;
-
 
 border-radius:25px;
 
@@ -413,8 +369,6 @@ transition:0.4s ease;
 
 position:relative;
 overflow:hidden;
-
-
 }
 
 .premium-card:hover{
@@ -424,7 +378,6 @@ box-shadow:0 25px 50px rgba(0,0,0,0.12);
 
 .premium-card::before{
 content:"";
-
 
 position:absolute;
 top:-2px;
@@ -440,8 +393,6 @@ border-radius:27px;
 
 opacity:0;
 transition:0.4s;
-
-
 }
 
 .premium-card:hover::before{
@@ -451,7 +402,6 @@ opacity:0.4;
 .project-tag{
 display:inline-block;
 
-
 padding:6px 14px;
 border-radius:20px;
 
@@ -460,8 +410,6 @@ color:white;
 
 font-size:12px;
 margin-bottom:15px;
-
-
 }
 
 .premium-card h3{
@@ -493,8 +441,6 @@ text-decoration:none;
 font-size:13px;
 
 transition:0.3s;
-
-
 }
 
 .github-btn:hover{
@@ -516,7 +462,6 @@ display:flex;
 align-items:center;
 gap:15px;
 
-
 padding:15px 25px;
 width:320px;
 
@@ -529,8 +474,6 @@ color:#111;
 
 font-size:14px;
 transition:0.3s;
-
-
 }
 
 .contact-item:hover{
@@ -549,7 +492,6 @@ color:#555;
 /* ================= MOBILE NAVBAR ================= */
 
 @media(max-width:768px){
-
 
 .hamburger{
     display:block;
@@ -583,7 +525,6 @@ color:#555;
 .nav-links a{
     width:100%;
     text-align:center;
-
     padding:10px;
     font-size:14px;
 }
@@ -603,6 +544,5 @@ color:#555;
 .premium-card{
     width:100%;
 }
-
 
 }
