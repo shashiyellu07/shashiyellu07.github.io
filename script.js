@@ -20,6 +20,7 @@ let letter = "";
     letter = currentText.slice(0, ++index);
 
     const typingElement = document.querySelector(".typing");
+
     if(typingElement){
         typingElement.textContent = letter;
     }
@@ -35,17 +36,24 @@ let letter = "";
 
 
 // =========================
-// NAVBAR FUNCTIONALITY
+// NAVBAR ELEMENTS
 // =========================
 
 const navLinks = document.querySelectorAll(".nav-link");
 const navPill = document.querySelector(".nav-pill");
 const sections = document.querySelectorAll("section");
 const navbar = document.querySelector(".navbar");
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-links");
 
-// Move sliding pill
+
+// =========================
+// MOVE SLIDING PILL (DESKTOP ONLY)
+// =========================
+
 function movePill(element){
-    if(!element || !navPill) return;
+
+    if(!element || !navPill || window.innerWidth <= 768) return;
 
     const rect = element.getBoundingClientRect();
     const parentRect = element.parentElement.parentElement.getBoundingClientRect();
@@ -54,17 +62,38 @@ function movePill(element){
     navPill.style.left = (rect.left - parentRect.left) + "px";
 }
 
-// Initial pill position
-window.addEventListener("load", () => {
-    const activeLink = document.querySelector(".nav-link.active");
-    if(activeLink){
-        movePill(activeLink);
-    }
+
+// =========================
+// MOBILE MENU TOGGLE
+// =========================
+
+if(hamburger){
+    hamburger.addEventListener("click",()=>{
+        navMenu.classList.toggle("active");
+    });
+}
+
+
+// Close mobile menu when clicking nav link
+navLinks.forEach(link=>{
+    link.addEventListener("click",()=>{
+
+        navLinks.forEach(l=>l.classList.remove("active"));
+
+        link.classList.add("active");
+
+        movePill(link);
+
+        // Close mobile menu after selection
+        if(window.innerWidth <= 768){
+            navMenu.classList.remove("active");
+        }
+    });
 });
 
 
 // =========================
-// SCROLL DETECTION + NAVBAR CONTROL
+// SCROLL DETECTION
 // =========================
 
 let lastScroll = 0;
@@ -81,7 +110,6 @@ window.addEventListener("scroll", () => {
         }
     });
 
-    // Active link highlight
     navLinks.forEach(link=>{
         link.classList.remove("active");
 
@@ -91,7 +119,6 @@ window.addEventListener("scroll", () => {
         }
     });
 
-    // Hide navbar on scroll down
     const currentScroll = window.pageYOffset;
 
     if(currentScroll > lastScroll){
@@ -101,16 +128,4 @@ window.addEventListener("scroll", () => {
     }
 
     lastScroll = currentScroll;
-
-});
-
-
-// Click navigation highlight
-navLinks.forEach(link=>{
-    link.addEventListener("click",()=>{
-        navLinks.forEach(l=>l.classList.remove("active"));
-
-        link.classList.add("active");
-        movePill(link);
-    });
 });
